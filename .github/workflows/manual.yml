@@ -47,19 +47,19 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 ########################################
-    - name: Add authentication secrets for DEV
-      if: env.SELECTED_ENVIRONMENT == 'dev'
-      env:
-        TEST_SECRET: ${{ secrets.TEST_SECRET }}
-    - name: Add authentication secrets for QA
-      if: env.SELECTED_ENVIRONMENT == 'qa'
-      env:
-        TEST_SECRET: ${{ secrets.ANOTHER_SECRET }}
+    # - name: Add authentication secrets for DEV
+    #   if: env.SELECTED_ENVIRONMENT == 'dev'
+    #   env:
+    #     TEST_SECRET: ${{ secrets.TEST_SECRET }}
+    # - name: Add authentication secrets for QA
+    #   if: env.SELECTED_ENVIRONMENT == 'qa'
+    #   env:
+    #     TEST_SECRET: ${{ secrets.ANOTHER_SECRET }}
     
     - name: Print envs
       run: |
         echo "test secret value is:"
-        echo ${{ env.TEST_SECRET }}
+        # echo ${{ env.TEST_SECRET }}
 ##############################################
     # # Runs a single command using the runners shell
     # - name: Send greeting
