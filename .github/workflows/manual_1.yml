@@ -32,9 +32,9 @@ jobs:
       run: echo "Hello ${{ inputs.name }}"
 
     - name: Check if dev
-      if: ${{ inputs.name }} == 'dev'
+      if: ${{ inputs.name == 'dev' }}
       run: echo "Hello DEV"
 
     - name: Check if qa
-      if: ${{ inputs.name }} == 'qa'
+      if: ${{ inputs.name == 'qa' }}
       run: echo "Hello QA"
