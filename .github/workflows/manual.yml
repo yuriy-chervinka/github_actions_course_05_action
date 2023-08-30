@@ -47,6 +47,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 ########################################
+    - name: Add value to env
+      env:
+        TEST_VALUE: 'some value'
     # - name: Add authentication secrets for DEV
     #   if: env.SELECTED_ENVIRONMENT == 'dev'
     #   env:
