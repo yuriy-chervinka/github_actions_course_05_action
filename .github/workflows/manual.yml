@@ -8,15 +8,34 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
+      # name:
+      #   # Friendly description to be shown in the UI instead of 'name'
+      #   description: 'Person to greet'
+      #   # Default value if no value is explicitly provided
+      #   default: 'World'
+      #   # Input has to be provided for the workflow to run
+      #   required: true
+      #   # The data type of the input
+      #   type: string
+#########################################
+      Test_Environment:
+        description: 'Test Environment name'
+        default: 'dev'
         required: true
-        # The data type of the input
+        type: choice
+        options:
+          - dev
+          - qa
+      Git_Branch:
+        description: 'Which branch to use'
+        default: 'main'
+        required: true
         type: string
+
+env:
+  SELECTED_ENVIRONMENT: ${{ inputs.Test_Environment }}  # Set the selected environment as an environment variable
+
+############################################
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,6 +46,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+########################################
+    - name: Add authentication secrets for DEV
+      if: env.SELECTED_ENVIRONMENT == 'dev'
+      env:
+        TEST_SECRET: ${{ secrets.TEST_SECRET }}
+    - name: Add authentication secrets for QA
+      if: env.SELECTED_ENVIRONMENT == 'qa'
+      env:
+        TEST_SECRET: ${{ secrets.ANOTHER_SECRET }}
+    
+    - name: Print envs
+      run: |
+        echo "test secret value is:"
+        echo ${{ env.TEST_SECRET }}
+##############################################
+    # # Runs a single command using the runners shell
+    # - name: Send greeting
+    #   run: echo "Hello ${{ inputs.name }}"
