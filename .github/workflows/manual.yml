@@ -26,11 +26,11 @@ on:
         options:
           - dev
           - qa
-      Git_Branch:
-        description: 'Which branch to use'
-        default: 'main'
-        required: true
-        type: string
+      # Git_Branch:
+      #   description: 'Which branch to use'
+      #   default: 'main'
+      #   required: true
+      #   type: string
 
 env:
   SELECTED_ENVIRONMENT: ${{ inputs.Test_Environment }}  # Set the selected environment as an environment variable
