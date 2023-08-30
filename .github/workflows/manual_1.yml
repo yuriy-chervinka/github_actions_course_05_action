@@ -31,9 +31,10 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
 
-    - name: Set env
+    - name: Set env variable
+      run: echo "heellooo"
       env:
-        TEST: 'test ent var'
+        TEST_TEST: 'test_env_var'
 
     - name: Check if dev
       if: ${{ inputs.name == 'dev' }}
@@ -57,5 +58,5 @@ jobs:
         echo "secret: $TEST_SECRET"
         echo "env: $TEST_ENV"
         echo "_________"
-        echo "test: $TEST"
+        echo "test: $TEST_TEST"
         
