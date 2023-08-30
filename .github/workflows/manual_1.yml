@@ -33,8 +33,20 @@ jobs:
 
     - name: Check if dev
       if: ${{ inputs.name == 'dev' }}
+      env:
+        TEST_SECRET: ${{ secrets.TEST_SECRET }}
+        TEST_ENV: 'dev'
       run: echo "Hello DEV"
 
     - name: Check if qa
       if: ${{ inputs.name == 'qa' }}
+      env:
+        TEST_SECRET: ${{ secrets.ANOTHER_SECRET }}
+        TEST_ENV: 'qa'
       run: echo "Hello QA"
+
+    - name: Print envs
+      run: |
+        echo "secret ${{ env.TEST_SECRET }}"
+        echo "env ${{ env.TEST_ENV }}"
+        
