@@ -49,4 +49,7 @@ jobs:
       run: |
         echo "secret ${{ env.TEST_SECRET }}"
         echo "env ${{ env.TEST_ENV }}"
+        echo "_________"
+        echo "secret: $TEST_SECRET"
+        echo "env: $TEST_ENV"
         
