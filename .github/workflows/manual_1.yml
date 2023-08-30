@@ -32,9 +32,9 @@ jobs:
       run: echo "Hello ${{ inputs.name }}"
 
     - name: Set env variable
-      run: echo "heellooo"
-      env:
-        TEST_TEST: 'test_env_var'
+      run: |
+        # bash
+        echo "TEST_TEST=test_env_var" >> $GITHUB_ENV
 
     - name: Check if dev
       if: ${{ inputs.name == 'dev' }}
@@ -58,6 +58,7 @@ jobs:
         echo "secret: $TEST_SECRET"
         echo "env: $TEST_ENV"
         echo "_________"
+        echo "env.test: ${{ env.TEST_TEST }}"
         echo "test: $TEST_TEST"
         echo "all env vars:"
         env
