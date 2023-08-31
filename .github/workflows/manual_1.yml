@@ -1,4 +1,4 @@
-# This is a basic workflow that is manually triggered
+nv# This is a basic workflow that is manually triggered
 
 name: Manual workflow
 
@@ -40,7 +40,7 @@ jobs:
       if: ${{ inputs.name == 'dev' }}
       run: |
         # bash
-        echo "TEST_SECRET=$ {{ secrets.TEST_SECRET" >> $GITHUB_ENV
+        echo "TEST_SECRET=$ {{ secrets.TEST_SECRET }}" >> $GITHUB_ENV
         echo "Hello DEV"
 
     - name: Check if qa
@@ -61,6 +61,7 @@ jobs:
         echo "env.test: ${{ env.TEST_TEST }}"
         echo "test: $TEST_TEST"
         echo "all env vars:"
+        env
 
     # - name: Test secret dev from secrets
     #   if: ${{ secrets.TEST_SECRET == 'secret' }}
