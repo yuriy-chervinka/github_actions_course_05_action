@@ -38,10 +38,10 @@ jobs:
 
     - name: Check if dev
       if: ${{ inputs.name == 'dev' }}
-      env:
-        TEST_SECRET: ${{ secrets.TEST_SECRET }}
-        TEST_ENV: 'dev'
-      run: echo "Hello DEV"
+      run: |
+        # bash
+        echo "TEST_SECRET=$ {{ secrets.TEST_SECRET" >> $GITHUB_ENV
+        echo "Hello DEV"
 
     - name: Check if qa
       if: ${{ inputs.name == 'qa' }}
@@ -61,5 +61,11 @@ jobs:
         echo "env.test: ${{ env.TEST_TEST }}"
         echo "test: $TEST_TEST"
         echo "all env vars:"
-        env
-        
+
+    - name: Test secret dev from secrets
+      if: ${{ secrets.TEST_SECRET == 'secret' }}
+      run: echo "DEV SECRET IS 'SECRET'"
+
+    - name: Test secret dev from env
+      if: ${{ env.TEST_SECRET == 'secret' }}
+      run: echo "DEV SECRET IS 'SECRET'"
