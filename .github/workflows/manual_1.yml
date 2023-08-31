@@ -62,9 +62,9 @@ jobs:
         echo "test: $TEST_TEST"
         echo "all env vars:"
 
-    - name: Test secret dev from secrets
-      if: ${{ secrets.TEST_SECRET == 'secret' }}
-      run: echo "DEV SECRET IS 'SECRET'"
+    # - name: Test secret dev from secrets
+    #   if: ${{ secrets.TEST_SECRET == 'secret' }}
+    #   run: echo "DEV SECRET IS 'SECRET'"
 
     - name: Test secret dev from env
       if: ${{ env.TEST_SECRET == 'secret' }}
